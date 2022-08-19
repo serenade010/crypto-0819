@@ -28,6 +28,7 @@ func main() {
 	r.POST("/user", controllers.UserCreate)
 	r.GET("/users", controllers.UserIndex)
 	r.GET("/user/:id", controllers.UserShow)
+	r.GET("/user/find/:name", controllers.UserFind)
 	r.PUT("/user/:id", controllers.UserUpdate)
 	r.DELETE("user/:id", controllers.UserDelete)
 	//api-endpoints-MlModel

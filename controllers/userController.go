@@ -56,6 +56,17 @@ func UserShow(c *gin.Context) {
 	})
 }
 
+func UserFind(c *gin.Context) {
+
+	name := c.Param("name")
+	var user models.User
+	//Find the user by name
+	initializers.DB.Where("name = ?", name).First(&user)
+	c.JSON(200, gin.H{
+		"user": user,
+	})
+}
+
 func UserUpdate(c *gin.Context) {
 	//Get the id off the URL
 	id := c.Param("id")
