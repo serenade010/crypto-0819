@@ -16,11 +16,12 @@ func MlModelCreate(c *gin.Context) {
 		Epochs         int
 		Batch_size     int
 		UserID         uint
+		MSE            float32
 	}
 
 	c.Bind(&body)
 	//Create a ML Model
-	model := models.MlModel{Name: body.Name, Ratio_of_train: body.Ratio_of_train, Look_back: body.Look_back, Learning_rate: body.Learning_rate, Epochs: body.Epochs, Batch_size: body.Batch_size, UserID: body.UserID}
+	model := models.MlModel{Name: body.Name, Ratio_of_train: body.Ratio_of_train, Look_back: body.Look_back, Learning_rate: body.Learning_rate, Epochs: body.Epochs, Batch_size: body.Batch_size, UserID: body.UserID, MSE: body.MSE}
 
 	// Pass pointer of data to Create
 	result := initializers.DB.Create(&model)
@@ -73,6 +74,7 @@ func MlModelUpdate(c *gin.Context) {
 		Epochs         int
 		Batch_size     int
 		UserID         uint
+		MSE            float32
 	}
 	c.Bind(&body)
 	//Find the user we are updating
@@ -80,7 +82,7 @@ func MlModelUpdate(c *gin.Context) {
 	initializers.DB.First(&model, id)
 
 	//Update it
-	initializers.DB.Model(&model).Updates(models.MlModel{Name: body.Name, Ratio_of_train: body.Ratio_of_train, Look_back: body.Look_back, Learning_rate: body.Learning_rate, Epochs: body.Epochs, Batch_size: body.Batch_size, UserID: body.UserID})
+	initializers.DB.Model(&model).Updates(models.MlModel{Name: body.Name, Ratio_of_train: body.Ratio_of_train, Look_back: body.Look_back, Learning_rate: body.Learning_rate, Epochs: body.Epochs, Batch_size: body.Batch_size, UserID: body.UserID, MSE: body.MSE})
 	//Response with it
 	c.JSON(200, gin.H{
 		"user": model,

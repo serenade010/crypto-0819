@@ -11,4 +11,5 @@ type MlModel struct {
 	Epochs         int
 	Batch_size     int
 	UserID         uint
+	MSE            float32
 }
