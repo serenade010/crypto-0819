@@ -58,7 +58,7 @@ func MlModelShow(c *gin.Context) {
 
 	//Response with them
 	c.JSON(200, gin.H{
-		"user": model,
+		"model": model,
 	})
 }
 
@@ -85,7 +85,7 @@ func MlModelUpdate(c *gin.Context) {
 	initializers.DB.Model(&model).Updates(models.MlModel{Name: body.Name, Ratio_of_train: body.Ratio_of_train, Look_back: body.Look_back, Learning_rate: body.Learning_rate, Epochs: body.Epochs, Batch_size: body.Batch_size, UserID: body.UserID, MSE: body.MSE})
 	//Response with it
 	c.JSON(200, gin.H{
-		"user": model,
+		"model": model,
 	})
 }
 
