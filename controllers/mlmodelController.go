@@ -97,3 +97,14 @@ func MlModelDelete(c *gin.Context) {
 	//Respond
 	c.Status(200)
 }
+
+func MLModelRank(c *gin.Context) {
+	var models []models.MlModel
+	initializers.DB.Limit(10).Order("MSE asc").Find(&models)
+
+	//Response with them
+	c.JSON(200, gin.H{
+		"models": models,
+	})
+
+}

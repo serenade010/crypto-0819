@@ -37,6 +37,7 @@ func main() {
 	r.GET("/model/:id", controllers.MlModelShow)
 	r.PUT("/model/:id", controllers.MlModelUpdate)
 	r.DELETE("model/:id", controllers.MlModelDelete)
+	r.GET("/models/rank", controllers.MLModelRank)
 
 	r.Run()
 }
